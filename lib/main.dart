@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'generated/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart'; 
 
 void main() {
   runApp(MyApp());
@@ -15,6 +17,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple
       ),
       home: FirstScreen(),
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }
