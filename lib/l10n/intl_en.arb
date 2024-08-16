@@ -1,1 +1,5 @@
-{}
+{
+    "data": "Default",
+    "firstScreen": "First Screen",
+    "secondScreen": "Go to 2nd Screen"
+}

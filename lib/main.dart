@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'generated/l10n.dart';
-import 'package:flutter_localizations/flutter_localizations.dart'; 
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,9 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple
-      ),
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
       home: FirstScreen(),
       localizationsDelegates: [
         S.delegate,
@@ -33,21 +31,20 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  String data = "Default Content";
+  String data = '';
 
   @override
   Widget build(BuildContext context) {
+    final delegate = S.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('First Screen')
-      ),
+      appBar: AppBar(title: Text(delegate.firstScreen)),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(data),
             ElevatedButton(
-              child: Text('GO TO 2nd SCREEN'),
+              child: Text(delegate.secondScreen),
               onPressed: () async {
                 final result = await Navigator.push(
                   context,
@@ -98,14 +95,14 @@ class _SecondScreenState extends State<SecondScreen> {
         final shouldExit = await showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text('Do you want to exit the app?'),
+            title: const Text('Do you want to exit the app?'),
             actions: [
               TextButton(
-                child: Text('No'),
+                child: const Text('No'),
                 onPressed: () => Navigator.of(context).pop(false),
               ),
               TextButton(
-                child: Text('Yes'),
+                child: const Text('Yes'),
                 onPressed: () => Navigator.of(context).pop(true),
               ),
             ],
@@ -116,30 +113,31 @@ class _SecondScreenState extends State<SecondScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Second Screen', style: TextStyle(color: Colors.amber)),
+          title: const Text('Second Screen',
+              style: TextStyle(color: Colors.amber)),
         ),
-    body: ListView.builder(
-      itemCount: data.length,
-      itemBuilder: (context, index) {
-        return Container(
-          padding: EdgeInsets.all(8.0),
-          child: ListTile(
-            title: Text(
-              data[index]['title'],
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+        body: ListView.builder(
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                title: Text(
+                  data[index]['title'],
+                  style: const TextStyle(
+                    color: Colors.black54,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pop(context, data[index]['title']);
+                },
               ),
-            ),
-            onTap: () {
-              Navigator.pop(context, data[index]['title']);
-            },
-          ),
-        );
-      },
-    ),
-  ),
-  );
-}
+            );
+          },
+        ),
+      ),
+    );
+  }
 }

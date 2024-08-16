@@ -21,5 +21,9 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "data": MessageLookupByLibrary.simpleMessage("Default"),
+        "firstScreen": MessageLookupByLibrary.simpleMessage("First Screen"),
+        "secondScreen": MessageLookupByLibrary.simpleMessage("Go to 2nd Screen")
+      };
 }

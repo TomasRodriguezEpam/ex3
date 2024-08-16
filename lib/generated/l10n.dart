@@ -49,6 +49,36 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Default`
+  String get data {
+    return Intl.message(
+      'Default',
+      name: 'data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First Screen`
+  String get firstScreen {
+    return Intl.message(
+      'First Screen',
+      name: 'firstScreen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to 2nd Screen`
+  String get secondScreen {
+    return Intl.message(
+      'Go to 2nd Screen',
+      name: 'secondScreen',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
